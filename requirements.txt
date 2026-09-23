@@ -1,0 +1,4 @@
+flask>=3.0
+requests>=2.31
+# optional, recommended if several people or many streams share one server:
+# waitress>=3.0

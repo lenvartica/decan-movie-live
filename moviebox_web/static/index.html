@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Decan MovieBox Web</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ctext y='19' font-size='20'%3E%F0%9F%8E%AC%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="/static/style.css">
+<!--THEME-->
+</head>
+<body>
+<div id="shell">
+  <header class="bar">
+    <button class="brand" id="brand-home" title="Home" aria-label="Home">
+      <span class="bracket">[</span>DECAN MOVIE<span class="cursor" aria-hidden="true"></span><span class="bracket">]</span>
+    </button>
+
+    <div class="pill-toggle" role="tablist" aria-label="Mode">
+      <button data-mode="streaming" role="tab">Streaming</button>
+      <button data-mode="tv" role="tab">TV</button>
+    </div>
+
+    <button class="provider-badge" id="provider-badge" title="Switch provider (Ctrl+P)"></button>
+
+    <div class="cmdbar">
+      <span class="prompt">›</span>
+      <input id="cmd-input" type="text" autocomplete="off" spellcheck="false"
+             placeholder="Search titles, or type / for commands…" aria-label="Search">
+      <div id="cmd-hint" class="cmd-hint hidden" role="listbox"></div>
+    </div>
+
+    <button class="icon-btn hidden" id="btn-addons" title="Addon manager (/config)">🧩</button>
+    <button class="icon-btn hidden" id="btn-tv-playlists" title="Playlists (/config)">📡</button>
+    <button class="icon-btn" id="btn-favorites" title="Favorites (/favorites)">♡</button>
+    <button class="icon-btn" id="btn-history" title="History (/history)">🕘</button>
+    <button class="icon-btn" id="btn-settings" title="Settings (/settings)">⚙</button>
+    <button class="icon-btn" id="btn-help" title="Help (?)">?</button>
+  </header>
+
+  <main>
+    <section id="view-home" class="view active">
+      <div id="home-sections"></div>
+    </section>
+
+    <section id="view-search" class="view">
+      <div class="search-heading" id="search-heading"></div>
+      <div id="search-results"></div>
+    </section>
+
+    <section id="view-details" class="view"></section>
+
+    <section id="view-tv" class="view">
+      <div class="tv-layout">
+        <nav class="tv-groups" id="tv-groups" aria-label="Channel groups"></nav>
+        <div id="tv-channels"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="statusbar">
+    <span id="status-shortcuts"></span>
+    <span class="msg" id="status-msg"></span>
+  </footer>
+</div>
+
+<!-- video player -->
+<div id="player-overlay" class="hidden">
+  <div class="player-topbar">
+    <span class="player-live-badge hidden" id="player-live">LIVE</span>
+    <span class="t" id="player-title"></span>
+    <select id="player-source" class="hidden mono" aria-label="Source"></select>
+    <button id="player-close" aria-label="Close player" title="Close (Esc)">✕</button>
+  </div>
+  <video id="player-video" controls playsinline autoplay></video>
+  <div id="player-msg" class="player-msg hidden"></div>
+</div>
+
+<!-- modal host -->
+<div id="modal-backdrop" class="modal-backdrop hidden"></div>
+
+<div id="toast-stack" class="toast-stack" aria-live="polite"></div>
+
+<!--BOOT-->
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1/dist/hls.min.js" defer></script>
+<script src="/static/app.js" defer></script>
+</body>
+</html>
